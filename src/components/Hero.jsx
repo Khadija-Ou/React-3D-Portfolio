@@ -130,7 +130,7 @@ const Hero = () => {
             <Subtitle>What I Do</Subtitle>
           </WhatWeDo>
           <Desc>
-            I am a full stack we developer, experienced in building &
+            I am a full stack web developer, experienced in building &
             designing, and redesigning landing pages, websites &
             Shopify eCommerce.
           </Desc>
