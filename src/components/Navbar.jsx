@@ -1,22 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import { HashLink as Link } from 'react-router-hash-link'
 
-const Section = styled.div`
+const NavbarSection = styled.div`
   display: flex;
   justify-content: center;
-  @media only screen and (max-width: 768px) {
-    width: 100%;
+  @media only screen and (max-width: 1024px) {
+    width: 98%;
+  }
+  @media only screen and (min-width: 1024px) and (max-width: 1521px) {
+    width: 98%;
+  }
+  .nav {
+    background-color: pink;
+  }
+  .nav.active {
+    background-color: black;
   }
 `
 
 const Container = styled.div`
   width: 1400px;
+  padding: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
-  @media only screen and (max-width: 768px) {
-    width: 100%;
+  @media only screen and (max-width: 1024px) {
+    width: 99%;
     padding: 10px;
   }
 `
@@ -27,29 +37,30 @@ const Links = styled.div`
   gap: 50px;
 `
 
-const Logo = styled.img`
-  height: 50px;
-`
-
-const List = styled.ul`
+const List = styled.div`
   display: flex;
   gap: 20px;
   list-style: none;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display: none;
   }
 `
 
-const ListItem = styled.li`
-  cursor: pointer;
-`
+const ListItem = {
+  cursor: 'pointer',
+  textDecoration: 'none',
+  color: 'white',
+}
 
 const Icons = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
 `
-
+const Git = styled.a`
+  display: flex;
+  align-items: center;
+`
 const Icon = styled.img`
   width: 35px;
   cursor: pointer;
@@ -67,25 +78,36 @@ const Button = styled.button`
 
 const Navbar = () => {
   return (
-    <Section>
+    <NavbarSection>
       <Container>
         <Links>
           {/* <Logo src='./img/logo.png' /> */}
-          <h1>MC2code</h1>
+          <h1>Khadija</h1>
           <List>
-            <ListItem>Home</ListItem>
-            <ListItem>Studio</ListItem>
-            <ListItem>Works</ListItem>
-            <ListItem>Contact</ListItem>
+            <Link to='#home' style={ListItem}>
+              Home
+            </Link>
+            <Link to='#about' style={ListItem}>
+              About
+            </Link>
+            <Link to='#works' style={ListItem}>
+              Works
+            </Link>
+            <Link to='#contact' style={ListItem}>
+              Contact
+            </Link>
           </List>
         </Links>
         <Icons>
-          {/* Changed the image due to copyright problems */}
-          <Icon src='./img/github.png' />
-          <Button>Hire Now</Button>
+          <Git href='https://github.com/khadija-ou'>
+            <Icon src='./img/github.png' />
+          </Git>
+          <Link to='#contact' smooth>
+            <Button>Hire Now</Button>
+          </Link>
         </Icons>
       </Container>
-    </Section>
+    </NavbarSection>
   )
 }
 

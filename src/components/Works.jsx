@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import BookingApp from './BookingApp'
+import AdminPanel from './AdminPanel'
+import ShopifyTheme from './ShopifyTheme'
+import Portfolio from './Portfolio'
 
 const data = [
   'Booking App',
   'Admin Panel',
-  'Shopify Theme',
-  'Social Media',
-  'Github',
+  'Shopify theme',
+  'Portfolio',
 ]
 
 const Section = styled.div`
@@ -25,8 +28,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media only screen and (max-width: 768px) {
-    width: 100%;
+  @media only screen and (max-width: 1521px) {
+    width: 90%;
     flex-direction: column;
   }
 `
@@ -36,7 +39,7 @@ const Left = styled.div`
   display: flex;
   align-items: center;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1521px) {
     padding: 20px;
     justify-content: center;
   }
@@ -57,7 +60,7 @@ const ListItem = styled.li`
   -webkit-text-stroke: 1px white;
   position: relative;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1521px) {
     font-size: 24px;
     color: white;
     -webkit-text-stroke: 0px;
@@ -88,23 +91,39 @@ const ListItem = styled.li`
 `
 
 const Right = styled.div`
-  flex: 1;
+  flex: 1.2;
 `
 
 const Works = () => {
+  const [work, setWork] = useState('Booking App')
+
   return (
-    <Section>
+    <Section id='works'>
       <Container>
         <Left>
           <List>
             {data.map((item) => (
-              <ListItem key={item} text={item}>
+              <ListItem
+                key={item}
+                text={item}
+                onClick={() => setWork(item)}
+              >
                 {item}
               </ListItem>
             ))}
           </List>
         </Left>
-        <Right></Right>
+        <Right>
+          {work === 'Booking App' ? (
+            <BookingApp />
+          ) : work === 'Admin Panel' ? (
+            <AdminPanel />
+          ) : work === 'Shopify theme' ? (
+            <ShopifyTheme />
+          ) : (
+            <Portfolio />
+          )}
+        </Right>
       </Container>
     </Section>
   )
